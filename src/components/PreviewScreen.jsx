@@ -1,9 +1,7 @@
-function PreviewScreen({ navigate, setCredits }) {
-
-  const handleActivate = () => {
-    setCredits(3)
-    navigate('dashboard')
-  }
+function PreviewScreen({ navigate, activate, timeDelay }) {
+  const delayLabel = timeDelay === 'none'
+    ? 'Immediately after patient books elsewhere'
+    : `After a ${timeDelay}-day delay from last appointment`
 
   return (
     <div>
@@ -20,13 +18,19 @@ function PreviewScreen({ navigate, setCredits }) {
 
       <div className="card">
         <p style={{ fontSize: '15px', fontWeight: '500', marginBottom: '4px' }}>
-          This is what another clinic sees
+          This is exactly what another clinic sees
         </p>
         <p style={{ fontSize: '13px', color: '#666', marginBottom: '14px' }}>
-          Read-only. No comments. Triggered only after patient has already booked elsewhere.
+          Read-only. No annotation layer. Triggered only after a patient has already booked elsewhere via the Blind-Match Protocol — by that point, they were already gone.
         </p>
 
-        <div style={{ background: '#f4f4f2', borderRadius: '8px', padding: '12px', fontSize: '13px' }}>
+        <div style={{
+          background: '#f4f4f2',
+          borderRadius: '8px',
+          padding: '12px',
+          fontSize: '13px',
+          marginBottom: '12px'
+        }}>
           <div className="preview-row">
             <span style={{ color: '#666' }}>Patient ref</span>
             <span>KNT-4471</span>
@@ -48,13 +52,28 @@ function PreviewScreen({ navigate, setCredits }) {
             <span>6-week course, discharged with home exercises</span>
           </div>
           <div className="preview-row">
-            <span style={{ color: '#666' }}>Annotation layer</span>
-            <span style={{ color: '#A32D2D' }}>Not available</span>
+            <span style={{ color: '#666' }}>Comments / annotations</span>
+            <span style={{ color: '#A32D2D' }}>Not available — read only</span>
+          </div>
+          <div className="preview-row">
+            <span style={{ color: '#666' }}>Practitioner identity</span>
+            <span style={{ color: '#A32D2D' }}>Not available — never shared</span>
           </div>
         </div>
 
-        <p style={{ fontSize: '12px', color: '#666', marginTop: '10px' }}>
-          Billing notes, practitioner name and contact details are never shared. Data is only released via the Blind-Match Protocol — when a patient has already booked elsewhere.
+        <div style={{
+          background: '#E6F1FB',
+          borderRadius: '8px',
+          padding: '10px 12px',
+          fontSize: '13px',
+          color: '#185FA5',
+          marginBottom: '12px'
+        }}>
+          Your sharing delay: <strong>{delayLabel}</strong>
+        </div>
+
+        <p style={{ fontSize: '12px', color: '#666' }}>
+          Billing notes, practitioner name and contact details are never shared under any circumstances.
         </p>
       </div>
 
@@ -62,7 +81,7 @@ function PreviewScreen({ navigate, setCredits }) {
         Activating sharing gives you immediate access to 3 patient histories in your area.
       </div>
 
-      <button className="btn btn-primary" onClick={handleActivate}>
+      <button className="btn btn-primary" onClick={activate}>
         Activate sharing
       </button>
       <button className="btn btn-danger" onClick={() => navigate('landing')}>

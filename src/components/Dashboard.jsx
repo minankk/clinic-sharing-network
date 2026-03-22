@@ -7,12 +7,19 @@ const ALL_PATIENTS = [
 ]
 
 const ACTIVITY_FEED = [
-  { text: 'KNT-7821 accessed by Harbour Physio', time: '2 hours ago', credit: true },
-  { text: 'KNT-9103 accessed by City Physio', time: '5 hours ago', credit: true },
-  { text: 'KNT-6612 accessed by Westside Physio', time: 'yesterday', credit: true },
+  { text: 'KNT-7821 accessed by Harbour Physio', time: '2 hours ago' },
+  { text: 'KNT-9103 accessed by City Physio', time: '5 hours ago' },
+  { text: 'KNT-6612 accessed by Westside Physio', time: 'yesterday' },
 ]
 
-function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessedPatients, timeDelay }) {
+function Dashboard({
+  credits,
+  creditsEarned,
+  creditsSpent,
+  spendCredit,
+  accessedPatients,
+  timeDelay
+}) {
   const [progress, setProgress] = useState(83)
 
   useEffect(() => {
@@ -24,9 +31,16 @@ function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessed
     ? 'Immediate'
     : `${timeDelay}-day delay`
 
+  const allAccessed = accessedPatients.length === ALL_PATIENTS.length
+
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        marginBottom: '1.5rem'
+      }}>
         <p style={{ fontSize: '14px', fontWeight: '500' }}>Northside Physio</p>
         <span className="badge badge-success">Sharing active</span>
         <span className="badge badge-info">{delayLabel}</span>
@@ -57,7 +71,7 @@ function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessed
         {progress}% of clinics in your postcode area are now sharing — your activation contributed to this
       </p>
 
-      {credits === 0 && (
+      {credits === 0 && !allAccessed && (
         <div className="alert alert-warn">
           No credits remaining. Your shared histories are still active — you will earn credits as other clinics access them.
         </div>
@@ -67,6 +81,7 @@ function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessed
         <p style={{ fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>
           Patients with available history
         </p>
+
         {ALL_PATIENTS.map(pt => {
           const isAccessed = accessedPatients.includes(pt.id)
           return (
@@ -94,7 +109,8 @@ function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessed
             </div>
           )
         })}
-        {accessedPatients.length === ALL_PATIENTS.length && (
+
+        {allAccessed && (
           <p style={{ fontSize: '13px', color: '#666', marginTop: '10px' }}>
             All available histories accessed. Share more patient records to grow your credit balance.
           </p>
@@ -106,22 +122,25 @@ function Dashboard({ credits, creditsEarned, creditsSpent, spendCredit, accessed
           Network activity — your shared histories
         </p>
         {ACTIVITY_FEED.map((item, i) => (
-          <div key={i} style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '8px 0',
-            borderBottom: i < ACTIVITY_FEED.length - 1 ? '0.5px solid rgba(0,0,0,0.08)' : 'none',
-            fontSize: '13px'
-          }}>
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '8px 0',
+              borderBottom: i < ACTIVITY_FEED.length - 1
+                ? '0.5px solid rgba(0,0,0,0.08)'
+                : 'none',
+              fontSize: '13px'
+            }}
+          >
             <div>
               <span>{item.text}</span>
               <br />
               <span style={{ color: '#666', fontSize: '12px' }}>{item.time}</span>
             </div>
-            {item.credit && (
-              <span className="badge badge-success">+1 credit</span>
-            )}
+            <span className="badge badge-success">+1 credit</span>
           </div>
         ))}
         <p style={{ fontSize: '12px', color: '#666', marginTop: '10px' }}>

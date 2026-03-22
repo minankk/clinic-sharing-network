@@ -40,23 +40,28 @@ function LandingScreen({ navigate, isActivated }) {
 
         <div style={{ marginBottom: '16px' }}>
           {lockedPatients.map(p => (
-            <div key={p.id} className="patient-row" style={{ opacity: 1 }}>
-              <div>
+            <div key={p.id} className="patient-row">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <span style={{ fontSize: '14px' }}>{p.id}</span>
-                <br />
                 <span
                   className="tag"
                   style={{
                     filter: 'blur(4px)',
                     userSelect: 'none',
                     display: 'inline-block',
-                    marginTop: '2px'
                   }}
                 >
                   {p.tag}
                 </span>
               </div>
-              <span style={{ fontSize: '18px' }}>&#128274;</span>
+              <span style={{
+                display: 'flex',
+                alignItems: 'center',
+                fontSize: '18px',
+                lineHeight: 1
+              }}>
+                &#128274;
+              </span>
             </div>
           ))}
         </div>

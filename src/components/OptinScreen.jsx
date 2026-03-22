@@ -17,7 +17,8 @@ function OptinScreen({ navigate, timeDelay, setTimeDelay }) {
           One setting. That is all.
         </p>
         <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
-          The data payload is fixed — diagnosis codes, treatment summaries and dates. This guarantees network quality for every clinic. The only thing you control is timing.
+          The data payload is fixed — diagnosis codes, treatment summaries and dates.
+          This guarantees network quality for every clinic. The only thing you control is timing.
         </p>
 
         <label>Share patient history</label>
@@ -38,13 +39,13 @@ function OptinScreen({ navigate, timeDelay, setTimeDelay }) {
           fontSize: '13px',
           color: '#666'
         }}>
-          <p style={{ fontWeight: '500', color: '#1a1a1a', marginBottom: '6px' }}>
+          <p style={{ fontWeight: '500', color: '#1a1a1a', marginBottom: '8px' }}>
             What is always shared
           </p>
           <p style={{ marginBottom: '4px' }}>Diagnosis codes</p>
           <p style={{ marginBottom: '4px' }}>Treatment summaries</p>
           <p style={{ marginBottom: '4px' }}>Dates of treatment</p>
-          <p style={{ marginTop: '8px', fontSize: '12px' }}>
+          <p style={{ marginTop: '10px', fontSize: '12px' }}>
             Billing notes, practitioner identity and contact details are never shared.
           </p>
         </div>

@@ -38,10 +38,18 @@ function App() {
         <LandingScreen navigate={navigate} isActivated={isActivated} />
       )}
       {screen === 'optin' && (
-        <OptinScreen navigate={navigate} timeDelay={timeDelay} setTimeDelay={setTimeDelay} />
+        <OptinScreen
+          navigate={navigate}
+          timeDelay={timeDelay}
+          setTimeDelay={setTimeDelay}
+        />
       )}
       {screen === 'preview' && (
-        <PreviewScreen navigate={navigate} activate={activate} timeDelay={timeDelay} />
+        <PreviewScreen
+          navigate={navigate}
+          activate={activate}
+          timeDelay={timeDelay}
+        />
       )}
       {screen === 'dashboard' && (
         <Dashboard

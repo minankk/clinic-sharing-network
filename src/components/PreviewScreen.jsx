@@ -21,7 +21,8 @@ function PreviewScreen({ navigate, activate, timeDelay }) {
           This is exactly what another clinic sees
         </p>
         <p style={{ fontSize: '13px', color: '#666', marginBottom: '14px' }}>
-          Read-only. No annotation layer. Triggered only after a patient has already booked elsewhere via the Blind-Match Protocol — by that point, they were already gone.
+          Read-only. No annotation layer. Triggered only after a patient has already
+          booked elsewhere via the Blind-Match Protocol — by that point, they were already gone.
         </p>
 
         <div style={{
@@ -84,7 +85,11 @@ function PreviewScreen({ navigate, activate, timeDelay }) {
       <button className="btn btn-primary" onClick={activate}>
         Activate sharing
       </button>
-      <button className="btn btn-danger" onClick={() => navigate('landing')}>
+      <button
+        className="btn btn-danger"
+        onClick={() => navigate('landing')}
+        style={{ marginTop: '8px' }}
+      >
         Not now
       </button>
     </div>
